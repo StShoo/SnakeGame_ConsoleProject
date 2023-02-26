@@ -47,6 +47,8 @@ namespace Snake_consoleGameProject
             Direction currentMovement = Direction.Right;
             Stopwatch sw = new Stopwatch();
 
+            int score = 0;
+
             while (true)
             {
                 sw.Restart();
@@ -61,11 +63,22 @@ namespace Snake_consoleGameProject
                     }
                 }
 
-                snake.Move(currentMovement);
+                if(snake.Head.X == food.X && snake.Head.Y == food.Y)
+                {
+                    snake.Move(currentMovement, true);
+
+                    food = GenFood(snake);
+                    food.Draw();
+                    score++;
+                }
+                else
+                {
+                    snake.Move(currentMovement);
+                }
 
                 if (snake.Head.X == MapWidth - 1
                     || snake.Head.X == 0
-                    || snake.Head.Y == MapWidth - 1
+                    || snake.Head.Y == MapHeight - 1
                     || snake.Head.Y == 0
                     || snake.Body.Any(b => b.X == snake.Head.X && b.Y == snake.Head.Y))
                     break;
@@ -74,7 +87,8 @@ namespace Snake_consoleGameProject
             snake.Clear();
 
             SetCursorPosition(ScreenWidth / 3, ScreenHeight / 2);
-            WriteLine("Game over");
+            WriteLine("Game over " +
+                $"Score: {score}");
         }
 
         static Pixel GenFood(Snake snake)
