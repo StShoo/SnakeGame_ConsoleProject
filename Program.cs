@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using static System.Console;
+
 namespace Snake_consoleGameProject
 {
     internal class Program
@@ -21,6 +22,9 @@ namespace Snake_consoleGameProject
 
         static void Main()
         {
+            Console.WriteLine("Please press ENTER when ready");
+            Console.ReadKey();
+
             SetWindowSize(ScreenWidth, ScreenHeight);
             SetBufferSize(ScreenWidth, ScreenHeight);
 
