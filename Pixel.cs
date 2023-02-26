@@ -8,6 +8,8 @@ namespace Snake_consoleGameProject
 {
     public readonly struct Pixel
     {
+        private const char pixelChar = '█';
+
         public Pixel(int x, int y, ConsoleColor color)
         {
             X = x;
@@ -18,5 +20,16 @@ namespace Snake_consoleGameProject
         public int X { get; }
         public int Y { get; }
         public ConsoleColor Color { get; }
+
+        public void Draw()
+        {
+            Console.SetCursorPosition(X, Y);
+            Console.WriteLine(pixelChar);
+        }
+        public void Clear()
+        {
+            Console.SetCursorPosition(X, Y);
+            Console.WriteLine(' ');
+        }
     }
 }
