@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using System.Diagnostics;
+using static System.Console;
 namespace Snake_consoleGameProject
 {
     internal class Program
@@ -13,6 +14,8 @@ namespace Snake_consoleGameProject
         private const ConsoleColor headColor = ConsoleColor.DarkGreen;
         private const ConsoleColor bodyColor = ConsoleColor.Green;
 
+        private const int FrameMs = 200;
+
         static void Main()
         {
             SetWindowSize(ScreenWidth, ScreenHeight);
@@ -24,12 +27,19 @@ namespace Snake_consoleGameProject
 
             var snake = new Snake(10, 5, bodyColor, headColor);
 
-            ReadKey();
+            Direction currentMovement = Direction.Right;
+            Stopwatch sw = new Stopwatch();
 
             while (true)
             {
-                snake.Move(Direction.Down);
-                Thread.Sleep(1000);
+                sw.Restart();
+
+                while(sw.ElapsedMilliseconds < FrameMs)
+                {
+                    currentMovement = ReadMovement(currentMovement);
+                }
+
+                snake.Move(currentMovement);
             }
         }
 
