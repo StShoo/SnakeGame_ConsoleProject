@@ -5,12 +5,17 @@ namespace Snake_consoleGameProject
     {
         private const int MapWidth = 30;
         private const int MapHeight = 20;
+
+        private const int ScreenWidth = MapWidth * 3;
+        private const int ScreenHeight = MapHeight * 3;
+
         private const ConsoleColor borderColor = ConsoleColor.Gray;
 
         static void Main()
         {
-            SetWindowSize(MapWidth, MapHeight);
-            SetBufferSize(MapWidth, MapHeight);
+            SetWindowSize(ScreenWidth, ScreenHeight);
+            SetBufferSize(ScreenWidth, ScreenHeight);
+
             CursorVisible = false;
 
             DrawBorder();
