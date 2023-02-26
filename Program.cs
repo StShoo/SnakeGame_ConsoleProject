@@ -25,6 +25,12 @@ namespace Snake_consoleGameProject
                 new Pixel(i, 0, borderColor).Draw();
                 new Pixel(i, MapHeight - 1, borderColor).Draw();
             }
+
+            for (int i = 0; i < MapHeight; i++)
+            {
+                new Pixel(0, i, borderColor).Draw();
+                new Pixel(MapWidth - 1, i, borderColor).Draw();
+            }
         }
     }
 }
