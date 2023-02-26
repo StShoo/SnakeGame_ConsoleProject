@@ -24,12 +24,12 @@ namespace Snake_consoleGameProject
         public void Draw()
         {
             Console.SetCursorPosition(X, Y);
-            Console.WriteLine(pixelChar);
+            Console.Write(pixelChar);
         }
         public void Clear()
         {
             Console.SetCursorPosition(X, Y);
-            Console.WriteLine(' ');
+            Console.Write(' ');
         }
     }
 }
