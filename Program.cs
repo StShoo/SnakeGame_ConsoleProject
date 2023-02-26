@@ -10,6 +10,8 @@ namespace Snake_consoleGameProject
         private const int ScreenHeight = MapHeight * 3;
 
         private const ConsoleColor borderColor = ConsoleColor.Gray;
+        private const ConsoleColor headColor = ConsoleColor.DarkGreen;
+        private const ConsoleColor bodyColor = ConsoleColor.Green;
 
         static void Main()
         {
@@ -20,7 +22,36 @@ namespace Snake_consoleGameProject
 
             DrawBorder();
 
+            var snake = new Snake(10, 5, bodyColor, headColor);
+
             ReadKey();
+
+            while (true)
+            {
+                snake.Move(Direction.Down);
+                Thread.Sleep(1000);
+            }
+        }
+
+        static Direction ReadMovement(Direction currentDirection)
+        {
+            if(!KeyAvailable)
+            {
+                return currentDirection;
+            }
+
+            ConsoleKey key = ReadKey(true).Key;
+
+            currentDirection = key switch
+            {
+                ConsoleKey.UpArrow when currentDirection != Direction.Down => Direction.Up,
+                ConsoleKey.DownArrow when currentDirection != Direction.Up => Direction.Down,
+                ConsoleKey.LeftArrow when currentDirection != Direction.Right => Direction.Left,
+                ConsoleKey.RightArrow when currentDirection != Direction.Left => Direction.Right,
+                _ => currentDirection
+            };
+
+            return currentDirection;
         }
 
         static void DrawBorder()
